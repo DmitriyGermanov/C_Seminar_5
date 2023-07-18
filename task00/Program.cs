@@ -28,23 +28,25 @@ void PrintArray(int[] arr) //Распечатать массив
             Console.Write($"{arr[i]}, ");
 }
 
-
+int[] GetSum(int[] arr)
+{
+int[] res = new int[2];
+foreach (int el in arr)
+{
+    if (el > 0)
+    res[0] += el;
+    else
+    res[1] += el;
+}
+return res;
+}
 
 int sizeArray = GetNum("Введите длину массива:");
 int min = GetNum("Введите минимальное значение диапазона для элементов массива:");
 int max = GetNum("Введите минимальное значение диапазона для элементов массива:");
 int[] array = GetArray(sizeArray, min, max);
+int[] resSum = GetSum(array);
 
-int positiveSum = 0;
-int negativeSum = 0;
-
-foreach (int el in array)
-{
-    if (el > 0)
-    positiveSum += el;
-    else
-    negativeSum += el;
-}
-Console.WriteLine($"Сумма положительных элементов массива = {positiveSum}\nСумма отрицательных элементов массива = {negativeSum}");
+Console.WriteLine($"Сумма положительных элементов массива = {resSum[0]}\nСумма отрицательных элементов массива = {resSum[1]}");
 PrintArray(array);
 
